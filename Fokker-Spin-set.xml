@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+************************************************************************
+Fokker-Spin simulation configuration. This files ties together all the components
+used by FGFS to represent the Fokker-Spin. Components include the flight data
+model, instrument panel, and external 3D model.
+************************************************************************
+version 1.0  06/28/13 -->
+
+<PropertyList>
+ <sim>
+
+  <description>Fokker Spin (1911 at Haarlem)</description>
+  <author>LesterBoffo (FDM, 3D objects and animation coding)</author>
+  <status>alpha</status>
+  <rating>
+    <FDM type="int">2</FDM>
+    <systems type="int">1</systems>
+    <model type="int">3</model>
+    <cockpit type="int">1</cockpit>
+  </rating>
+
+
+  <flight-model>yasim</flight-model>
+  <aero>Fokker-Spin-yasim</aero>
+  <fuel-fraction>0.8</fuel-fraction>
+
+  <startup>
+   <splash-texture>Aircraft/Fokker-Spin/spin-splash.png</splash-texture>
+  </startup>
+
+  <sound>
+   <path>Aircraft/Fokker-Spin/Sounds/Fokker-Spin-sound.xml</path>
+  </sound>
+
+  <panel>
+   <visibility archive="n">false</visibility>
+  </panel>
+
+  <model>
+   <path archive="y">Aircraft/Fokker-Spin/Models/Fokker-Spin-model.xml</path>
+  </model>
+
+<!-- pilot viewpoint x=y y=z z=x ?  -->
+  <view>
+   <internal archive="y">true</internal>
+   <config>
+     <x-offset-m archive="y">0</x-offset-m>
+     <y-offset-m archive="y">0.69</y-offset-m>
+     <z-offset-m archive="y">1.501</z-offset-m>
+     <pitch-offset-deg>-8</pitch-offset-deg>
+   </config>
+  </view>
+  
+  <!-- Payload -->
+  <weight>
+   <name type="string">Pilot</name>
+   <weight-lb alias="/yasim/Fokker-Spin/pilot-lb"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">210.0</max-lb>
+  </weight>  
+
+
+</sim>
+
+ <controls>
+  <flight>
+   <aileron-trim>0.00</aileron-trim>   <!-- fixed -->
+   <elevator-trim>0.00</elevator-trim> <!-- controllable -->
+   <rudder-trim>0.00</rudder-trim>     <!-- fixed -->
+  </flight>
+  <engines>
+   <engine n="0">
+    <magnetos>3</magnetos>
+   </engine>
+  </engines>
+ </controls>
+
+ <engines>
+  <engine>
+   <rpm type="double">0</rpm>
+  </engine>
+ </engines>
+
+ <limits>
+  <max-positive-g>2.25</max-positive-g>
+  <max-negative-g>-0.92</max-negative-g>
+  <vne>76</vne>
+ </limits>
+ 
+ <nasal>
+  <FokkerSpin>
+   <file>Aircraft/Generic/limits.nas</file>
+  </FokkerSpin>
+ </nasal>
+
+</PropertyList>
